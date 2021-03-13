@@ -1,0 +1,5 @@
+{
+  "employee": "http://localhost:3000/employee",
+  "employee_details": "http://localhost:3000/employee/{nik}",
+  "job_position": "http://localhost:3000/employee/position/{job_position}"
+}

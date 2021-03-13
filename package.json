@@ -1,0 +1,36 @@
+{
+  "name": "express-restful-api",
+  "version": "1.0.0",
+  "description": "Membuat arsitektur restful api dengan node.js, express.js dan mysql",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "start:dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/febriadj/express-restful-api.git"
+  },
+  "keywords": [
+    "restful-api",
+    "expressjs",
+    "nodejs",
+    "mysql"
+  ],
+  "author": "febriadji",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/febriadj/express-restful-api/issues"
+  },
+  "homepage": "https://github.com/febriadj/express-restful-api#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
