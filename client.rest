@@ -16,3 +16,8 @@ Content-Type: application/json
   "last_name": "adji",
   "position": "backend"
 }
+
+###
+
+DELETE http://localhost:3000/employee/1000000010
+Content-Type: application/json

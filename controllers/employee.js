@@ -15,7 +15,6 @@ router.post('/', async (req, res, next) => {
 
   if (first_name, last_name, position == undefined || null) {
     return await res.status(401).json({ 
-      status: 401, 
       message: 'the form cannot be blank' 
     })
   }
@@ -45,7 +44,6 @@ router.post('/', async (req, res, next) => {
         if (err) return reject(err)
 
         resolve(res.status(200).json({ 
-          status: 200, 
           message: 'managed to add employees' 
         }))
       })
@@ -57,6 +55,29 @@ router.post('/', async (req, res, next) => {
       .catch(err => console.log(err))
   })
   .catch(err => console.log(err))
+})
+
+router.delete('/:nik', async (req, res, next) => {
+  try {
+    const params = req.params.nik
+    const sql = await `delete from employee where nik = ?`
+    
+    return await conn.query(sql, [params], (err, result) => {
+      if (err) return console.log(err)
+
+      // conditions if there are no corresponding lines
+      if (result.affectedRows == 0) return res.status(401).json({
+        message: "no employee has a NIK number like this"
+      })
+
+      res.status(200).json({ 
+        message: 'managed to delete the employee'
+      })
+    })
+  }
+  catch(err) {
+    console.log(err)
+  }
 })
 
 module.exports = router
