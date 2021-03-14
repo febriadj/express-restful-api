@@ -12,7 +12,7 @@ POST http://localhost:3000/employee
 Content-Type: application/json
 
 {
-  "first_name": "x",
-  "last_name": "xx",
+  "first_name": "febri",
+  "last_name": "adji",
   "position": "backend"
 }

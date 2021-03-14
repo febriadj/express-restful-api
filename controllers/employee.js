@@ -20,42 +20,43 @@ router.post('/', async (req, res, next) => {
     })
   }
 
-  // create a full name by combining the first name with the last name
-  const fullname = first_name.concat(last_name)
-
-  async function insertEmployee() {
-    const sql = await `insert into employee values (
+  const insertEmployee = () => new Promise((resolve, reject) => {
+    const sql = `insert into employee values (
       0, '${first_name}', '${last_name}', '${position}'
     )`
 
-    return await conn.query(sql, err => {
-      if (err) return console.log(err)
+    conn.query(sql, (err, result) => {
+      if (err) return reject(err)
+      resolve(result)
+    })
+  })
 
-      res.status(200).json({ 
-        status: 200, 
-        message: 'success' 
+  // create a full name by combining the first name with the last name
+  const fullname = first_name.concat(' ' + last_name)
+
+  insertEmployee().then(result => {
+    // enter data into child tables
+    const insertDetails = () => new Promise((resolve, reject) => {
+      const sql = `insert into employee_details (nik_employee, full_name, join_date)
+        values (${result.insertId}, '${fullname}', null)
+      `
+
+      conn.query(sql, err => {
+        if (err) return reject(err)
+
+        resolve(res.status(200).json({ 
+          status: 200, 
+          message: 'managed to add employees' 
+        }))
       })
     })
-  }
 
-  async function insertDetails() {
-    const sql = await `insert into employee_details (nik_employee, full_name, join_date) values (
-      0, '${fullname}', null
-    )`
-
-    return await conn.query(sql, err => {
-      if (err) return console.log(err)
-
-      res.status(200).json({ 
-        status: 200, 
-        message: 'success' 
-      })
-    })
-  }
-
-  Promise.all([ insertEmployee(), insertDetails() ])
-    .then(result => result)
-    .catch(err => err)
+    // run the function for the insert section of employee_details
+    insertDetails()
+      .then(result => result)
+      .catch(err => console.log(err))
+  })
+  .catch(err => console.log(err))
 })
 
 module.exports = router
