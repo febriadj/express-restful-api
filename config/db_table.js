@@ -1,5 +1,5 @@
 module.exports = {
-  anime: async function() {
+  employee: async function() {
     try {
       return await `CREATE TABLE IF NOT EXISTS employee (
         nik int(10) PRIMARY KEY AUTO_INCREMENT,
@@ -12,7 +12,7 @@ module.exports = {
       console.log(err)
     }
   },
-  anime_details: async function() {
+  employee_details: async function() {
     try {
       return await `CREATE TABLE IF NOT EXISTS employee_details (
         nik_employee INT(10) AUTO_INCREMENT NOT NULL,

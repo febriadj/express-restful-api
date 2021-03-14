@@ -11,11 +11,11 @@ const conn = mysql.createConnection({
 conn.connect(err => {
   if (err) return console.log(err)
 
-  table.anime()
+  table.employee()
     .then(sql => conn.query(sql, err => err ? console.log(err) : null))
     .catch(err => console.log(err))
 
-  table.anime_details()
+  table.employee_details()
     .then(sql => conn.query(sql, err => err ? console.log(err) : null))
     .catch(err => console.log(err))
 
