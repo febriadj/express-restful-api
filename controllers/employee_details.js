@@ -5,8 +5,8 @@ const
 router.get('/:nik', async (req, res, next) => {
   try {
     const params = req.params.nik
-    const sql = await `select * from employee join employee_details
-      on employee.nik = employee_details.nik_employee where employee.nik = ?
+    const sql = await `SELECT * FROM employee JOIN employee_details
+      ON employee.nik = employee_details.nik_employee WHERE employee.nik = ?
     `
   
     return await conn.query(sql, [params], (err, result) => {

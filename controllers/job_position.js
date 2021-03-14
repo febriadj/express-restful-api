@@ -4,9 +4,9 @@ const
 
 router.get('/:job', async (req, res, next) => {
   const params = req.params.job
-  const sql = await `select * from employee join employee_details
-    on employee.nik = employee_details.nik_employee
-    where employee.position like '%${params}%'
+  const sql = await `SELECT * FROM employee JOIN employee_details
+    ON employee.nik = employee_details.nik_employee
+    WHERE employee.position LIKE '%${params}%'
   `
 
   return await conn.query(sql, (err, result) => {
