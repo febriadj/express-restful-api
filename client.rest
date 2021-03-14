@@ -12,10 +12,15 @@ POST http://localhost:3000/employee
 Content-Type: application/json
 
 {
-  "first_name": "febri",
-  "last_name": "adji",
-  "position": "backend"
+  "first_name": "elon",
+  "last_name": "musk",
+  "position": "it consultant"
 }
+
+###
+
+GET http://localhost:3000/employee/1000000013
+Content-Type: application/json
 
 ###
 
@@ -24,5 +29,5 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/employee/1000000011
+GET http://localhost:3000/employee/position/consultant
 Content-Type: application/json
