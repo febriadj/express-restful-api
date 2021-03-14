@@ -57,6 +57,76 @@ router.post('/', async (req, res, next) => {
   .catch(err => new Error(err))
 })
 
+router.patch('/:nik', async (req, res, next) => {
+  try {
+    const params = req.params.nik
+    const { position, residence, salary } = await req.body
+
+    if (position && position != undefined) {
+      // function to change job position
+      function patchUpdate() {
+        return new Promise((resolve, reject) => {
+          const sql = `UPDATE employee
+            SET position = ? WHERE nik = ${params}
+          `
+          return conn.query(sql, [position], (err, result) => {
+            if (err) return reject(err)
+            resolve('successfully changed data')
+          })
+        })
+      }
+
+      await patchUpdate().then(result => res.status(200).json({
+        message: result
+      }))
+      .catch(err => new Error(err))
+    }
+
+    if (residence && residence != undefined) {
+      // function to change residence
+      function patchUpdate() {
+        return new Promise((resolve, reject) => {
+          const sql = `UPDATE employee_details
+            SET residence = ? WHERE nik_employee = ${params}
+          `
+          return conn.query(sql, [residence], (err, result) => {
+            if (err) return reject(err)
+            resolve('successfully changed data')
+          })
+        })
+      }
+
+      await patchUpdate().then(result => res.status(200).json({
+        message: result
+      }))
+      .catch(err => new Error(err))
+    }
+
+    if (salary && salary != undefined) {
+      // function to change salary employee
+      function patchUpdate() {
+        return new Promise((resolve, reject) => {
+          const sql = `UPDATE employee_details
+            SET salary = ? WHERE nik_employee = ${params}
+          `
+          return conn.query(sql, [salary], (err, result) => {
+            if (err) return reject(err)
+            resolve('successfully changed data')
+          })
+        })
+      }
+
+      await patchUpdate().then(result => res.status(200).json({
+        message: result
+      }))
+      .catch(err => new Error(err))
+    }
+  }
+  catch(err) {
+    console.log(err)
+  }
+})
+
 router.put('/:nik', async (req, res, next) => {
   const params = req.params.nik
   const { first_name, last_name, position, date_of_birth, gender, residence, salary } = req.body
@@ -68,9 +138,14 @@ router.put('/:nik', async (req, res, next) => {
       WHERE nik = ${params}
     `
 
-    return conn.query(sql, [first_name, last_name, position], err => {
+    return conn.query(sql, [first_name, last_name, position], (err, result) => {
       if (err) return reject(err)
-      resolve('successfully updated employee data')
+
+      if (result.affectedRows == 0) {
+        resolve('no employee has a NIK number like this')
+      } else {
+        resolve('successfully updated employee data')
+      }
     })
   })
 
@@ -82,9 +157,14 @@ router.put('/:nik', async (req, res, next) => {
     // create a full name by combining the first name with the last name
     const fullname = first_name.concat(' ' + last_name)
 
-    return conn.query(sql, [fullname, date_of_birth, gender, residence, salary], err => {
+    return conn.query(sql, [fullname, date_of_birth, gender, residence, salary], (err, result) => {
       if (err) return reject(err)
-      resolve('successfully updated employee data')
+
+      if (result.affectedRows == 0) {
+        resolve('no employee has a NIK number like this')
+      } else {
+        resolve('successfully updated employee data')
+      }
     })
   })
 

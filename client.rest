@@ -39,6 +39,17 @@ Content-Type: application/json
   "salary": 18000000
 }
 
+###
+
+PATCH http://localhost:3000/employee/1000000001
+Content-Type: application/json
+
+{
+  "position": "backend",
+  "residence": "jakarta, indonesia",
+  "salary": 18000000
+}
+
 ### Delete Employee
 
 DELETE http://localhost:3000/employee/1000000015
