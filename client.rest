@@ -21,19 +21,19 @@ Content-Type: application/json
 
 ### Get Employee By NIK
 
-GET http://localhost:3000/employee/1000000017
+GET http://localhost:3000/employee/1000000001
 Content-Type: application/json
 
 ### Update Employee
 
-PUT http://localhost:3000/employee/1000000017
+PUT http://localhost:3000/employee/1000000001
 Content-Type: application/json
 
 {
   "first_name": "febri",
   "last_name": "adji",
   "position": "backend",
-  "age": "2002/02/26",
+  "date_of_birth": "2002/02/26",
   "gender": "male",
   "residence": "jakarta, indonesia",
   "salary": 18000000

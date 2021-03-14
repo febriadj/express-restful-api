@@ -59,7 +59,7 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:nik', async (req, res, next) => {
   const params = req.params.nik
-  const { first_name, last_name, position, age, gender, residence, salary } = req.body
+  const { first_name, last_name, position, date_of_birth, gender, residence, salary } = req.body
 
   // update all data from the two primary tables and child tables
   const updateEmployee = () => new Promise((resolve, reject) => {
@@ -76,13 +76,13 @@ router.put('/:nik', async (req, res, next) => {
 
   const updateDetails = () => new Promise((resolve, reject) => {
     const sql = `UPDATE employee_details
-    SET full_name = ?, age = ?, gender = ?, residence = ?, salary = ?
+    SET full_name = ?, date_of_birth = ?, gender = ?, residence = ?, salary = ?
     WHERE nik_employee = ${params}
     `
     // create a full name by combining the first name with the last name
     const fullname = first_name.concat(' ' + last_name)
 
-    return conn.query(sql, [fullname, age, gender, residence, salary], err => {
+    return conn.query(sql, [fullname, date_of_birth, gender, residence, salary], err => {
       if (err) return reject(err)
       resolve('successfully updated employee data')
     })
