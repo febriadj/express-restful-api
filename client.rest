@@ -1,33 +1,50 @@
+### Route Documentation
+
 GET http://localhost:3000/
 Content-Type: application/json
 
-###
+### Get Employee
 
 GET http://localhost:3000/employee
 Content-Type: application/json
 
-###
+### Add Employee
 
 POST http://localhost:3000/employee
 Content-Type: application/json
 
 {
-  "first_name": "elon",
-  "last_name": "musk",
-  "position": "it consultant"
+  "first_name": "febri",
+  "last_name": "adji",
+  "position": "backend"
 }
 
-###
+### Get Employee By NIK
 
-GET http://localhost:3000/employee/1000000013
+GET http://localhost:3000/employee/1000000017
 Content-Type: application/json
 
-###
+### Update Employee
 
-DELETE http://localhost:3000/employee/1000000012
+PUT http://localhost:3000/employee/1000000017
 Content-Type: application/json
 
-###
+{
+  "first_name": "febri",
+  "last_name": "adji",
+  "position": "backend",
+  "age": "2002/02/26",
+  "gender": "male",
+  "residence": "jakarta, indonesia",
+  "salary": 18000000
+}
 
-GET http://localhost:3000/employee/position/consultant
+### Delete Employee
+
+DELETE http://localhost:3000/employee/1000000015
+Content-Type: application/json
+
+### Get Employee By Job Position
+
+GET http://localhost:3000/employee/position/backend
 Content-Type: application/json
