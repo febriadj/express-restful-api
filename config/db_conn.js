@@ -1,5 +1,5 @@
 const mysql = require('mysql')
-const table = require('./db_table')
+const { employee, employee_details } = require('./db_table')
 
 const conn = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -11,11 +11,11 @@ const conn = mysql.createConnection({
 conn.connect(err => {
   if (err) return console.log(err)
 
-  table.employee()
+  employee()
     .then(sql => conn.query(sql, err => err ? console.log(err) : null))
     .catch(err => console.log(err))
 
-  table.employee_details()
+  employee_details()
     .then(sql => conn.query(sql, err => err ? console.log(err) : null))
     .catch(err => console.log(err))
 
