@@ -16,7 +16,11 @@ router.get('/:nik', async (req, res, next) => {
     })
   }
   catch(err) {
-    return console.log(err)
+    res.status(500).json({ 
+      status: 'internal server error',
+      code: 500,
+      message: err
+    })
   }
 })
 
